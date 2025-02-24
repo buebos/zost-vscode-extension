@@ -1,0 +1,70 @@
+{
+    "scopeName": "source.zost",
+    "patterns": [{ "include": "#expression" }],
+    "repository": {
+        "expression": {
+            "patterns": [
+                { "include": "#keywords" },
+                { "include": "#types" },
+                { "include": "#functions" },
+                { "include": "#function-definition" },
+                { "include": "#variables" },
+                { "include": "#operators" },
+                { "include": "#string" },
+                { "include": "#paren-expression" }
+            ]
+        },
+        "keywords": {
+            "match": "\\b(fn|main|for|range)\\b",
+            "name": "keyword.control.zost"
+        },
+        "types": {
+            "match": "\\b(int|string|void)\\b",
+            "name": "storage.type.zost"
+        },
+        "functions": {
+            "match": "[a-zA-Z_][a-zA-Z0-9_]*(?=\\()",
+            "name": "entity.name.function.zost"
+        },
+        "function-definition": {
+            "match": "\\bfn\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(([^)]*)\\)\\s*->\\s*([a-zA-Z_][a-zA-Z0-9_]*)",
+            "name": "meta.function.definition.zost",
+            "captures": {
+                "1": { "name": "entity.name.function.zost" },
+                "2": { "name": "variable.parameter.zost" },
+                "3": { "name": "storage.type.return.zost" }
+            }
+        },
+        "variables": {
+            "match": "[a-zA-Z_][a-zA-Z0-9_]*(?= *:=)",
+            "name": "variable.other.zost"
+        },
+        "operators": {
+            "match": ":=|->",
+            "name": "keyword.operator.assignment.zost"
+        },
+        "string": {
+            "begin": "\"",
+            "end": "\"",
+            "name": "string.quoted.double.zost",
+            "beginCaptures": {
+                "0": { "name": "punctuation.definition.string.begin.zost" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation.definition.string.end.zost" }
+            }
+        },
+        "paren-expression": {
+            "begin": "\\(",
+            "end": "\\)",
+            "beginCaptures": {
+                "0": { "name": "punctuation.section.group.begin.zost" }
+            },
+            "endCaptures": {
+                "0": { "name": "punctuation.section.group.end.zost" }
+            },
+            "name": "meta.group.zost",
+            "patterns": [{ "include": "#expression" }]
+        }
+    }
+}

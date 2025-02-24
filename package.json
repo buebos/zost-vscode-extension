@@ -12,12 +12,6 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "zost.helloWorld",
-        "title": "Hello World"
-      }
-    ],
     "languages": [{
       "id": "zost",
       "extensions": [".zt"],
@@ -25,7 +19,14 @@
         "dark": "./resource/zost.svg",
         "light": "./resource/zost.svg"
       }
-    }]
+    }],
+    "grammars": [
+      {
+        "language": "zost",
+        "scopeName": "source.zost",
+        "path": "./syntax/zost.tmGrammar.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
